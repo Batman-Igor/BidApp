@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Database" />
+        <module name="EmailService" />
+        <module name="EurekaServer" />
+        <module name="Gateway" />
+        <module name="GeneralService" />
+      </profile>
+      <profile name="Annotation profile for BidApp" enabled="true">
+        <sourceOutputDir name="../Gateway/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../Gateway/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Gateways" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="BidApp" target="1.8" />
+      <module name="Database" target="1.8" />
+      <module name="EmailService" target="1.8" />
+      <module name="EurekaServer" target="1.8" />
+      <module name="Gateway" target="1.8" />
+      <module name="Gateways" target="1.8" />
+      <module name="GeneralService" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

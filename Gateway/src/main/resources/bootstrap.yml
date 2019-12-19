@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: Gateway
+
+server:
+  port: 8700
+
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: false
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+zuul:
+  ignoredServices: '*'
+  routes:
+    clients:
+      path: /general/**
+      serviceId: GeneralService
+      stripPrefix: true
