@@ -28,4 +28,8 @@ public class BidService {
     public void saveToDb(Bid bid) {
         bidRepository.save(bid);
     }
+
+    public void updateStatus(String title, String date, String status) {
+        bidRepository.updateBid(title, date, status);
+    }
 }

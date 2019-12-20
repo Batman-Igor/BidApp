@@ -1,6 +1,7 @@
 package com.bidapp.demo.receiver;
 
 import com.bidapp.demo.objects.Bid;
+import com.bidapp.demo.objects.UpdatesInfo;
 import com.bidapp.demo.services.BidService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,6 +40,23 @@ public class Receiver {
 
     @KafkaListener(topics = "ManagerAllBidList")
     public void getBidsByStatus(String status) {
-        kafkaTemplate.send("ManagerBidList", service.getBidListByStatus(status));
+        List<Bid> list = service.getBidListByStatus(status);
+        System.out.println(list.size());
+        kafkaTemplate.send("ManagerBidList", list);
+    }
+
+
+    @KafkaListener(
+            topics = "ManagerChangeStatus",
+            groupId = "bid_update",
+            containerFactory = "kafkaUpdatesContainerFactory"
+    )
+    public void changeStatus(UpdatesInfo updatesInfo) {
+
+        System.out.println(updatesInfo.getDate());
+        System.out.println(updatesInfo.getTitle());
+        System.out.println(updatesInfo.getStatus());
+
+        service.updateStatus(updatesInfo.getTitle(), updatesInfo.getDate(), updatesInfo.getStatus());
     }
 }
