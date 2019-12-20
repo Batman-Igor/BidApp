@@ -12,5 +12,13 @@
         <input type="submit" value="Send">
     </form>
 
+    <hr>
+    <#list bids as bid>
+        <p>${bid}</p>
+    <#else>
+        <p>No bids</p>
+    </#list>
+    <hr>
+
     <@lgt.logout/>
 </@gen.g>

@@ -5,6 +5,7 @@ import com.binapp.demo.statuses.BidStatuses;
 import org.apache.kafka.common.protocol.types.Field;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -28,6 +30,16 @@ public class UserController {
     @Value("${user.email}")
     String userEmail;
 
+    boolean mon;
+    List<Bid> list;
+
+    @KafkaListener(topics = "UsersBidList")
+    public void setMon(List<Bid> bidList) {
+        mon = true;
+        list = bidList;
+    }
+
+
     @GetMapping(path = "/user-platform")
     public String getUser(Authentication authentication, Model model) {
 
@@ -36,8 +48,27 @@ public class UserController {
             return "error";
         }
 
+        mon = false;
+
+        kafkaTemplateEmail.send("BidList",userEmail);
+
+        System.out.print("Waiting");
+        while (!mon) {
+            System.out.print(".");
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println();
+
+        model.addAttribute("bids", list);
         model.addAttribute("name", authentication.getName());
         model.addAttribute("role", Arrays.toString(authentication.getAuthorities().toArray()));
+
+        kafkaTemplateEmail.send("BidList",authentication.getName());
+
         return "user";
     }
 

@@ -17,6 +17,10 @@ public class BidService {
         return bidRepository.findAll();
     }
 
+    public List<Bid> getBidListByName(String email) {
+        return bidRepository.findBidByEmail(email);
+    }
+
     public void saveToDb(Bid bid) {
         bidRepository.save(bid);
     }
