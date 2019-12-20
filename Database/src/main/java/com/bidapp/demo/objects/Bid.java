@@ -12,25 +12,19 @@ public class Bid {
 
     private String title;
     private String data;
+    private String email;
     private String dateOfCreation;
     private String status;
 
     public Bid() {
     }
 
-    public Bid(String title, String data, String dateOfCreation, String status) {
+    public Bid(String title, String data, String email, String dateOfCreation, String status) {
         this.title = title;
         this.data = data;
+        this.email = email;
         this.dateOfCreation = dateOfCreation;
         this.status = status;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -49,6 +43,14 @@ public class Bid {
         this.data = data;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getDateOfCreation() {
         return dateOfCreation;
     }
@@ -64,4 +66,17 @@ public class Bid {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer("Bid{");
+        sb.append("title='").append(getTitle()).append('\'');
+        sb.append(", data='").append(getData()).append('\'');
+        sb.append(", email='").append(getEmail()).append('\'');
+        sb.append(", dateOfCreation='").append(getDateOfCreation()).append('\'');
+        sb.append(", status='").append(getStatus()).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
+
 }
