@@ -16,4 +16,8 @@ public class BidService {
     public List<Bid> getBidList() {
         return bidRepository.findAll();
     }
+
+    public void saveToDb(Bid bid) {
+        bidRepository.save(bid);
+    }
 }
