@@ -21,6 +21,10 @@ public class BidService {
         return bidRepository.findBidByEmail(email);
     }
 
+    public List<Bid> getBidListByStatus(String status) {
+        return bidRepository.findBidByStatus(status);
+    }
+
     public void saveToDb(Bid bid) {
         bidRepository.save(bid);
     }

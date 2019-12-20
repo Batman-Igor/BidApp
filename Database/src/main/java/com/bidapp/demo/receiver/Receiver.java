@@ -36,4 +36,9 @@ public class Receiver {
     public void getUserBids(String email) {
         kafkaTemplate.send("UsersBidList", service.getBidListByName(email));
     }
+
+    @KafkaListener(topics = "ManagerAllBidList")
+    public void getBidsByStatus(String status) {
+        kafkaTemplate.send("ManagerBidList", service.getBidListByStatus(status));
+    }
 }
