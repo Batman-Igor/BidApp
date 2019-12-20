@@ -2,7 +2,7 @@
 <#import "common/logout.ftl" as lgt>
 
 <@gen.g>
-<p>Hello, ${name}</p>
-<p>User role: ${role}</p>
+    <p>Hello, ${name}</p>
+    <p>User role: ${role}</p>
     <@lgt.logout/>
 </@gen.g>
