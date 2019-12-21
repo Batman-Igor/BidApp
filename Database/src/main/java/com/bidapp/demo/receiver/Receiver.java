@@ -22,13 +22,14 @@ public class Receiver {
     @Autowired
     KafkaTemplate<String, List<Bid>> kafkaTemplate;
 
+    ObjectMapper mapper = new ObjectMapper();
+
     @KafkaListener(
             topics = "BidTopic",
             groupId = "bid_id",
             containerFactory = "kafkaListenerContainerFactory"
     )
     public void consumeBid(String incomingBid) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
         Bid bid = mapper.readValue(incomingBid, Bid.class);
         service.saveToDb(bid);
     }
@@ -46,17 +47,9 @@ public class Receiver {
     }
 
 
-    @KafkaListener(
-            topics = "ManagerChangeStatus",
-            groupId = "bid_update",
-            containerFactory = "kafkaUpdatesContainerFactory"
-    )
-    public void changeStatus(UpdatesInfo updatesInfo) {
-
-        System.out.println(updatesInfo.getDate());
-        System.out.println(updatesInfo.getTitle());
-        System.out.println(updatesInfo.getStatus());
-
+    @KafkaListener(topics = "ManagerChangeStatus")
+    public void changeStatus(String incoming) throws JsonProcessingException {
+        UpdatesInfo updatesInfo = mapper.readValue(incoming, UpdatesInfo.class);
         service.updateStatus(updatesInfo.getTitle(), updatesInfo.getDate(), updatesInfo.getStatus());
     }
 }

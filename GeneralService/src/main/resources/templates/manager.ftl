@@ -17,7 +17,7 @@
                             <form action="/update" method="post">
                                 <input type="hidden" name="title" value="${bid.title}"/>
                                 <input type="hidden" name="date" value="${bid.dateOfCreation}"/>
-                                <input type="hidden" name="status" value="Denny"/>
+                                <input type="hidden" name="status" value="DENNY"/>
                                 <button type="submit">Denny</button>
                             </form>
                         </td>
@@ -25,7 +25,7 @@
                             <form action="/update" method="post">
                                 <input type="hidden" name="title" value="${bid.title}"/>
                                 <input type="hidden" name="date" value="${bid.dateOfCreation}"/>
-                                <input type="hidden" name="status" value="Approve"/>
+                                <input type="hidden" name="status" value="APPROVE"/>
                                 <button type="submit">Approve</button>
                             </form>
                         </td>

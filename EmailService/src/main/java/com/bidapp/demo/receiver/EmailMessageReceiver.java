@@ -27,5 +27,4 @@ public class EmailMessageReceiver {
                 "Bid (" + bid.toString() + ") updated!"
                 );
     }
-
 }
