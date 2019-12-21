@@ -26,6 +26,9 @@ public class ManagerController {
     KafkaTemplate<String, String> kafkaTemplateEmail;
 
     @Autowired
+    KafkaTemplate<String, Bid> kafkaBidTemplate;
+
+    @Autowired
     KafkaTemplate<String, UpdatesInfo> kafkaTemplateUpdate;
 
     @KafkaListener(
@@ -69,6 +72,8 @@ public class ManagerController {
     @PostMapping("/update")
     public String updateStatus(Authentication authentication,
                                             @RequestParam String title,
+                                            @RequestParam String data,
+                                            @RequestParam String email,
                                             @RequestParam String date,
                                             @RequestParam String status) {
         String role = Arrays.toString(authentication.getAuthorities().toArray());
@@ -76,9 +81,11 @@ public class ManagerController {
             return "error";
         }
 
+        Bid bid = new Bid(title, data, email, date, status);
         UpdatesInfo updatesInfo = new UpdatesInfo(title, date, status);
+
         kafkaTemplateUpdate.send("ManagerChangeStatus", updatesInfo);
-        kafkaTemplateEmail.send("SendStatus", "Status updated: " + status);
+        kafkaBidTemplate.send("SendStatus", bid);
 
         return "redirect:/manager-platform";
     }

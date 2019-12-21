@@ -16,16 +16,20 @@
                         <td style="border: 1px solid black">
                             <form action="/update" method="post">
                                 <input type="hidden" name="title" value="${bid.title}"/>
+                                <input type="hidden" name="data" value="${bid.data}"/>
+                                <input type="hidden" name="email" value="${bid.email}"/>
                                 <input type="hidden" name="date" value="${bid.dateOfCreation}"/>
-                                <input type="hidden" name="status" value="DENNY"/>
+                                <input type="hidden" name="status" value="DENNIED"/>
                                 <button type="submit">Denny</button>
                             </form>
                         </td>
                         <td style="border: 1px solid black">
                             <form action="/update" method="post">
                                 <input type="hidden" name="title" value="${bid.title}"/>
+                                <input type="hidden" name="data" value="${bid.data}"/>
+                                <input type="hidden" name="email" value="${bid.email}"/>
                                 <input type="hidden" name="date" value="${bid.dateOfCreation}"/>
-                                <input type="hidden" name="status" value="APPROVE"/>
+                                <input type="hidden" name="status" value="APPROVED"/>
                                 <button type="submit">Approve</button>
                             </form>
                         </td>
