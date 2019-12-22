@@ -116,10 +116,10 @@ public class KafkaConfiguration {
     @Bean
     public ConsumerFactory<String, List<Bid>> bidsConsumerFactory() {
         Map<String, Object> config = new HashMap<>();
-        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
-        config.put(ConsumerConfig.GROUP_ID_CONFIG, "bids");
-        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+            config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+            config.put(ConsumerConfig.GROUP_ID_CONFIG, "bids");
+            config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+            config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
         return new DefaultKafkaConsumerFactory<>(
                 config,
                 new StringDeserializer(),
@@ -130,7 +130,7 @@ public class KafkaConfiguration {
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, List<Bid>> bidsKafkaListenerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, List<Bid>> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(bidsConsumerFactory());
+            factory.setConsumerFactory(bidsConsumerFactory());
         return factory;
     }
 

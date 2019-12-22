@@ -2,6 +2,7 @@ package com.binapp.demo.controllers;
 
 import com.binapp.demo.objects.Bid;
 import com.binapp.demo.statuses.BidStatuses;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.common.protocol.types.Field;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,9 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 
 @Controller
 public class UserController {
@@ -31,17 +31,21 @@ public class UserController {
     String userEmail;
 
     boolean mon;
-    List<Bid> list;
+    private List<LinkedHashMap> list;
 
-    @KafkaListener(topics = "UsersBidList")
-    public void setMon(List<Bid> bidList) {
+    @KafkaListener(
+            topics = "UsersBidList",
+            groupId = "bids",
+            containerFactory = "bidsKafkaListenerFactory"
+    )
+    public void setMon(List<LinkedHashMap> bidList) {
         mon = true;
         list = bidList;
     }
 
 
     @GetMapping(path = "/user-platform")
-    public String getUser(Authentication authentication, Model model) {
+    public String getUser(Authentication authentication, Model model) throws IOException {
 
         String role = Arrays.toString(authentication.getAuthorities().toArray());
         if (!role.intern().equals("[ROLE_USER]")) {
@@ -49,9 +53,7 @@ public class UserController {
         }
 
         mon = false;
-
         kafkaTemplateEmail.send("BidList",userEmail);
-
         System.out.print("Waiting");
         while (!mon) {
             System.out.print(".");
@@ -63,9 +65,28 @@ public class UserController {
         }
         System.out.println();
 
+        int approved = 0;
+        int denied = 0;
+        if (!list.isEmpty()) {
+            for (LinkedHashMap l : list) {
+                switch (String.valueOf(l.get("status"))) {
+                    case "APPROVED":
+                        approved++;
+                        break;
+                    case "DENIED":
+                        denied++;
+                        break;
+                }
+            }
+        }
+
         model.addAttribute("bids", list);
         model.addAttribute("name", authentication.getName());
-        model.addAttribute("role", Arrays.toString(authentication.getAuthorities().toArray()));
+        model.addAttribute("email", userEmail);
+        model.addAttribute("role", "Bids Creator");
+        model.addAttribute("total", list.size());
+        model.addAttribute("approved", approved);
+        model.addAttribute("denied", denied);
 
         kafkaTemplateEmail.send("BidList",authentication.getName());
 

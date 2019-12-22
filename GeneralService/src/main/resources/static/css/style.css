@@ -1,0 +1,102 @@
+.red{
+    background: red;
+}
+
+.myFormElem{
+    margin-top: 3%;
+    margin-bottom: 2%;
+}
+
+.infoHeader{
+    margin-top: 1%;
+    border-bottom: 1px solid gray;
+}
+
+.myTh{
+    width: 20%;
+}
+.myImage{
+    max-height: 200px;
+    max-width: 200px;
+    border-radius: 45px;
+    margin-top: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    border: 2px solid black
+}
+.myLogoImg{
+    border-radius: 15px;
+}
+
+.myBlockButton{
+    margin-top: 5px;
+    border-radius: 15px;
+}
+.mySignIn{
+    max-width: 400px;
+    margin-top: 10%;
+}
+
+.whiteBlue{
+    background: rgb(198, 198, 240);
+}
+
+
+.green{
+    background: rgb(46, 177, 46);
+    border: 1px solid rgb(35, 255, 35);
+}
+
+.myModalBody{
+ border: 3px solid black;
+}
+
+.myModalHeader{
+    border-bottom: 1px solid black;
+}
+
+.myModalFooter{
+    border-top: 1px solid black;
+}
+
+.myInfoContainer{
+    min-height: 500px;
+}
+
+.blue{
+    background: rgb(118, 118, 243);
+}
+
+.grey{
+    background: rgb(197, 196, 196);
+}
+
+.orange{
+    background: rgb(255, 51, 0);
+    border: 1px solid rgb(155, 4, 4)
+}
+
+.personCard{
+    /* width: 50%; */
+    background: honeydew;
+    border-radius: 15px;
+    margin: 5px 5px 5px 0;
+    /* display: flex; */
+}
+
+.photo{
+    margin: 5px auto 5px 8px;
+}
+
+.description{
+    margin: 5px 8px 5px auto;
+}
+.myTable{
+    margin-top: 5px;
+}
+
+.myCard{
+    margin-top: 5px;
+    border-radius: 15px;
+}

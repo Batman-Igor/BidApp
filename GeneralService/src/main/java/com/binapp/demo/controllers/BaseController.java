@@ -19,4 +19,8 @@ public class BaseController {
         }
     }
 
+    @GetMapping(path = "/login")
+    public String getLogin() {
+        return "login";
+    }
 }

@@ -1,24 +1,21 @@
 <#import "common/general.ftl" as gen>
-<#import "common/logout.ftl" as lgt>
+<#import "common/userMenu.ftl" as umenu>
+<#import "common/userInfo.ftl" as uinfo>
+<#import "common/userTasks.ftl" as utasks>
+<#import "common/userModal.ftl" as umodal>
 
 <@gen.g>
-    <p>Hello, ${name}</p>
-    <p>User role: ${role}</p>
+<#-- Нужно переработать стиль...в верстке возникает отступ! -->
+<div style="overflow: hidden;">
+    <@umenu.userMenu/>
+    <br>
+    <@uinfo.userInfo/>
+    <@utasks.userTasks/>
+</div>
 
-    <p>Create Bid</p>
-    <form method="post" action="/send">
-        <input type="text" name="title" placeholder="title">
-        <input type="text" name="data" placeholder="data">
-        <input type="submit" value="Send">
-    </form>
+<@umodal.modal/>
 
-    <hr>
-    <#list bids as bid>
-        <p>${bid}</p>
-    <#else>
-        <p>No bids</p>
-    </#list>
-    <hr>
 
-    <@lgt.logout/>
+<#--<script src=" https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>-->
+<script src="../js/script.js"></script>
 </@gen.g>

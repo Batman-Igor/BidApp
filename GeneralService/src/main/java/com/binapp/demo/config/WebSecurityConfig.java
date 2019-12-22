@@ -15,10 +15,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers("/send").hasRole("USER")
+                    .antMatchers("/css/**","/images/**","/js/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .csrf().disable()
                     .formLogin()
+                    .loginPage("/login")
+//                    .failureUrl("/error")
                     .permitAll()
                 .and()
                     .logout()

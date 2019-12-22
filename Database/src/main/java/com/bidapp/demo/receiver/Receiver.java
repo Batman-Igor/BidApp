@@ -22,7 +22,7 @@ public class Receiver {
     @Autowired
     KafkaTemplate<String, List<Bid>> kafkaTemplate;
 
-    ObjectMapper mapper = new ObjectMapper();
+    private ObjectMapper mapper = new ObjectMapper();
 
     @KafkaListener(
             topics = "BidTopic",

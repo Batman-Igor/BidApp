@@ -19,9 +19,6 @@ import java.util.List;
 @Controller
 public class ManagerController {
 
-    boolean mon;
-    List<Bid> list;
-
     @Autowired
     KafkaTemplate<String, String> kafkaTemplateEmail;
 
@@ -30,6 +27,11 @@ public class ManagerController {
 
     @Autowired
     KafkaTemplate<String, UpdatesInfo> kafkaTemplateUpdate;
+
+
+    private boolean mon;
+    private List<Bid> list;
+
 
     @KafkaListener(
             topics = "ManagerBidList",
@@ -65,7 +67,7 @@ public class ManagerController {
 
         model.addAttribute("bids", list);
         model.addAttribute("name", authentication.getName());
-        model.addAttribute("role", Arrays.toString(authentication.getAuthorities().toArray()));
+        model.addAttribute("role", role);
         return "manager";
     }
 
