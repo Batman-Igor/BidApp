@@ -5,7 +5,7 @@
 <#import "common/userModal.ftl" as umodal>
 
 <@gen.g>
-д
+
 <div style="overflow: hidden;">
     <@umenu.userMenu/>
     <br>
