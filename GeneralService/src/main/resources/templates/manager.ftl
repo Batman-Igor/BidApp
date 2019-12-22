@@ -21,7 +21,7 @@
                         <input type="hidden" name="email" value="${bid.email}"/>
                         <input type="hidden" name="date" value="${bid.dateOfCreation}"/>
                         <input type="hidden" name="status" value="DENIED"/>
-                        <button type="submit">Denny</button>
+                        <button type="submit">Deny</button>
                     </form>
                 </td>
                 <td style="border: 1px solid black">
