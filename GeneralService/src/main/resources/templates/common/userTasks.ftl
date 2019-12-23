@@ -1,5 +1,5 @@
 <#macro userTasks>
-<div class="col-md-7 ">
+<div class="task-main">
 
     <table class="table table-striped table-dark myTable">
         <caption class="bg-secondary text-white ">

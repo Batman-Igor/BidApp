@@ -5,7 +5,7 @@
     <div class="col-md-12">
         <nav class="navbar navbar-dark bg-dark">
             <div>
-                <img class="myLogoImg" src="../images/uYjInVHH_400x400.jpg" width="30" height="30"
+                <img class="myLogoImg" src="../images/user-icons-56.png" width="30" height="30"
                      alt="">
                 <span class="text-white">${name}</span>
             </div>
@@ -15,8 +15,7 @@
                         aria-haspopup="true" aria-expanded="false">
                     Menu
                 </button>
-                <div class="dropdown-menu">
-                    <p class="dropdown-item">
+                <div class="dropdown-menu menu-drop">
                         <@lgt.logout/>
                     </p>
                 </div>
