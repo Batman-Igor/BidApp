@@ -35,3 +35,7 @@ Manager can approve or deny the bid and then the user will get an email message:
 Inbound mail with updated statuses:
 
 ![alt text](readme_images/image6.png)
+
+Usernames and passwords:
+User,123;
+Manager,1234;
