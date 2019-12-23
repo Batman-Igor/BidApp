@@ -12,7 +12,7 @@ Kafka Topic listeners scheme:
 
 ![alt text](readme_images/image8.png)
 
-Login as a user or a manager according to a role stored in DB: 
+Login as a user or a manager according to a role: 
 
 ![alt text](readme_images/image1.png)
 
